@@ -25,7 +25,7 @@ public class CalcController extends HttpServlet {
 		/*
 		 * int sum = 0; for(int i = su1; i <= su2; i++) { sum += i; }
 		 */
-		MyCalc my = new MyCalc();
+		MyCalc my = new MyCalc(); 
 		int sum = my.hap(su1, su2);
 		
 		// 응답하는 부분 (프리젠테이션 로직 = View = Jsp)
