@@ -19,7 +19,7 @@ select * from member;
 insert into member(id, pass,name, age, email, phone) values('admin', 'admin', '관리자', 40,  'chlwlsgur@naver.com', '010-1234-5678');
 
 -- update (수정)
-update member set age = 45, phone = '010-1111-0000' where id = 'admin';
+update member set age = 45, ph one = '010-1111-0000' where id = 'admin';
 
 -- delete (삭제)
 delete from member where id = 'admin'; 
