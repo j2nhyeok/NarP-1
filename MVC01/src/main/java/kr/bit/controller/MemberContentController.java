@@ -25,6 +25,8 @@ public class MemberContentController extends HttpServlet {
 		out.println("<head>");
 		out.println("</head>");
 		out.println("<body>");
+		out.println("<form action='/MVC01/memberUpdate.do' method='post'>");
+		out.println("<input type='hidden'name='num' value='"+vo.getNum()+"'/>");
 		out.println("<table>");
 		if(vo!=null) {
 			out.println("<tr>");
@@ -49,17 +51,24 @@ public class MemberContentController extends HttpServlet {
 			out.println("</tr>");
 			out.println("<tr>");
 			out.println("<td>이메일</td>");
-			out.println("<td><input type='text' name='age' value='"+vo.getEmail()+"'/> </td>");
+			out.println("<td><input type='text' name='email' value='"+vo.getEmail()+"'/> </td>");
 			out.println("</tr>");
 			out.println("<td>전화번호</td>");
-			out.println("<td><input type='text' name='age' value='"+vo.getPhone()+"'/> </td>");
+			out.println("<td><input type='text' name='phone' value='"+vo.getPhone()+"'/> </td>");
 			out.println("</tr>");
 		}else {
 			out.println("<tr>");
 			out.println("<td>일치하는 번호 없다 </td>");
 			out.println("</tr>");
 		}
+		out.println("<tr>");
+		out.println("<td colspan='2' align='center'>");
+		out.println("<input type='submit' value='수정하기'/>");
+		out.println("<input type='reset' value='취소'/>");
+		out.println("<a href='/MVC01/memberList.do'>리스트</a>");
+		out.println("</tr>");
 		out.println("</table>");
+		out.println("</form>");
 		out.println("</body>");
 		out.println("</html>");
 	}
