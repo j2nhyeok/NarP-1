@@ -16,6 +16,9 @@
 	for(int i=1;i<=100;i++){
 		sum+=i;
 	}
+	
+	//session, out, config, application, page, pageContext, request, response : jsp의 내장객체( 이미 만들어진 객체 )
+	
 %> <!-- 자바 코드를 사용하기 위한 '스크립트릿'    -->
 
 <!DOCTYPE html>
