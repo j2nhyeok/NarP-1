@@ -45,7 +45,7 @@
 				</tr>
 			</c:forEach>
 		<tr>
-			<td colspan='8' align='right'><input type="button" value="회원가입" onclick="location.href='member/memberRegister.html'"/> </a></td>
+			<td colspan='8' align='right'><input type="button" value="회원가입" onclick="location.href='/MVC04/memberRegister.do'"/> </a></td>
 		</tr>
 	</table>
 
