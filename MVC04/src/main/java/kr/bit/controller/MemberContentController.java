@@ -21,7 +21,9 @@ public class MemberContentController implements Controller{
 		
 		// 객체바인딩
 		request.setAttribute("vo", vo);
-		return "member/memberContent.jsp";
+		
+		return "memberContent"; // 뷰의 이름만 리턴
+		// return "/WEB-INF/member/memberContent.jsp";
 	}
 
 }

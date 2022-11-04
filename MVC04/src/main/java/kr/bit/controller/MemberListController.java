@@ -22,7 +22,7 @@ public class MemberListController implements Controller {
 		// 2. 객체 바인딩
 		request.setAttribute("list", list);
 		// 3. 다음 페이지 정보 (View)
-		return "member/memberList.jsp";
+		return "memberList";
 	}
 
 }

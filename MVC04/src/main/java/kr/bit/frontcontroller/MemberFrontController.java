@@ -16,19 +16,15 @@ import kr.bit.controller.MemberInsertController;
 import kr.bit.controller.MemberListController;
 import kr.bit.controller.MemberRegisterController;
 import kr.bit.controller.MemberUpdateController;
-import kr.bit.model.MemberDAO;
-import kr.bit.model.MemberVO;
 
 @WebServlet("*.do")
 public class MemberFrontController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("euc-kr");
+		request.setCharacterEncoding("utf-8");
 		// 클라이언트가 어떤 요청을 했는지 파악하기
 		String url=request.getRequestURI();
 		
 		String ctx=request.getContextPath(); //context경로
-		
 		
 		// 실제로 요청한 명령
 		String command=url.substring(ctx.length());
@@ -37,34 +33,19 @@ public class MemberFrontController extends HttpServlet {
 		// POJO를 연결
 		Controller controller=null;
 		String nextPage=null;
-		if(command.equals("/memberList.do")) { // 회원 리스트 보기 
-		    controller=new MemberListController();
-		    nextPage=controller.requestHandler(request, response);
-			RequestDispatcher rd=request.getRequestDispatcher(nextPage);
-			rd.forward(request, response);
-		}else if(command.equals("/memberInsert.do")) { // 회원가입
-			controller=new MemberInsertController();
-			nextPage=controller.requestHandler(request, response);
-			response.sendRedirect(nextPage); 
-		}else if(command.equals("/memberRegister.do")) { // 회원가입 화면
-			controller=new MemberRegisterController();
-			nextPage=controller.requestHandler(request, response);
-			RequestDispatcher rd=request.getRequestDispatcher(nextPage);
-			rd.forward(request, response);
-		}else if(command.equals("/memberContent.do")) {
-			controller=new MemberContentController();
-			nextPage=controller.requestHandler(request, response);
-			RequestDispatcher rd=request.getRequestDispatcher(nextPage);
-			rd.forward(request, response);
-		}else if(command.equals("/memberUpdate.do")) {
-			controller=new MemberUpdateController();
-			nextPage=controller.requestHandler(request, response);
-			response.sendRedirect(nextPage);
-		}else if(command.equals("/memberDelete.do")) {
-			controller=new MemberDeleteController();
-			nextPage=controller.requestHandler(request, response);
-			response.sendRedirect(nextPage);
-		}// if_ end
+		// 핸들러매핑 -> HandlerMapping
+		HandlerMapping mapping=new  HandlerMapping();
+		controller=mapping.getController(command);
+		nextPage=controller.requestHandler(request, response);
+		// forward, redirect
+		if(nextPage!=null) {
+			if(nextPage.indexOf("redirect:")!=-1) {
+				response.sendRedirect(nextPage.split(":")[1]);  // redirect
+			}else {
+				RequestDispatcher rd=request.getRequestDispatcher(viewResolver.makeView(nextPage)); // forward
+				rd.forward(request, response);
+			}
+		}
 	}
 
 }

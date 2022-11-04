@@ -13,6 +13,9 @@ public class MemberDeleteController implements Controller{
 	@Override
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		String ctx=request.getContextPath(); // /MVC04
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		MemberDAO dao = new MemberDAO();
@@ -20,7 +23,7 @@ public class MemberDeleteController implements Controller{
 		
 		String nextPage=null;
 		if(cnt > 0) {
-			nextPage="/MVC04/memberList.do";
+			nextPage="redirect:/"+ctx+"/memberList.do";
 		}else {
 			throw new ServletException("not delete");
 		}
